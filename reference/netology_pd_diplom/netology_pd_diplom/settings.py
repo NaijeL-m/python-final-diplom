@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backend.apps.BackendConfig',
+    'orders',
     'rest_framework',
     'rest_framework.authtoken',
     'django_rest_passwordreset',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'netology_pd_diplom.urls'
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -83,8 +85,8 @@ DATABASES = {
     # }
 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diplom_db',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'diplom_db2',
         'USER': 'diplom_user',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
