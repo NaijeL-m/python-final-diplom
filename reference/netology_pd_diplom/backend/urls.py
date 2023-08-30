@@ -5,9 +5,7 @@ from django.views.generic import TemplateView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from backend.views import PartnerUpdate, RegisterAccount, LoginAccount, CategoryView, ShopView, ProductInfoView, \
-    BasketView, \
-    AccountDetails, ContactView, OrderView, PartnerState, PartnerOrders, ConfirmAccount
+from backend.views import PartnerUpdate, RegisterAccount, LoginAccount, CategoryView, ShopView, ProductInfoView, BasketView, AccountDetails, ContactView, OrderView, PartnerState, PartnerOrders, ConfirmAccount
 
 schema_view = get_schema_view(
     openapi.Info(

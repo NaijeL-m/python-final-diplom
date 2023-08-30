@@ -308,7 +308,7 @@ class PartnerUpdate(APIView):
             except ValidationError as e:
                 return JsonResponse({'Status': False, 'Error': str(e)})
             else:
-            stream = get(url).content
+                stream = get(url).content
 
             data = load_yaml(stream, Loader=Loader)
 
