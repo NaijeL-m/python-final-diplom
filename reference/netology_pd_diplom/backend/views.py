@@ -294,20 +294,20 @@ class PartnerUpdate(APIView):
     """
 
     def post(self, request, *args, **kwargs):
-        # if not request.user.is_authenticated:
-        #     return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
-        #
-        # if request.user.type != 'shop':
-        #     return JsonResponse({'Status': False, 'Error': 'Только для магазинов'}, status=403)
+        if not request.user.is_authenticated:
+            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+
+        if request.user.type != 'shop':
+            return JsonResponse({'Status': False, 'Error': 'Только для магазинов'}, status=403)
 
         url = request.data.get('url')
         if url:
             validate_url = URLValidator()
-            # try:
-            #     validate_url(url)
-            # except ValidationError as e:
-            #     return JsonResponse({'Status': False, 'Error': str(e)})
-            # else:
+            try:
+                validate_url(url)
+            except ValidationError as e:
+                return JsonResponse({'Status': False, 'Error': str(e)})
+            else:
             stream = get(url).content
 
             data = load_yaml(stream, Loader=Loader)
