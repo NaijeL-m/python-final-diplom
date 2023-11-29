@@ -5,7 +5,8 @@ from django.views.generic import TemplateView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from backend.views import PartnerUpdate, RegisterAccount, LoginAccount, CategoryView, ShopView, ProductInfoView, BasketView, AccountDetails, ContactView, OrderView, PartnerState, PartnerOrders, ConfirmAccount
+from backend.views import PartnerUpdate, RegisterAccount, LoginAccount, CategoryView, ProductInfoView, \
+    BasketView, AccountDetails, ContactView, OrderView, PartnerState, PartnerOrders, ConfirmAccount, ShopViewSet
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -22,6 +23,11 @@ schema_view = get_schema_view(
 url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')
 
 app_name = 'backend'
+shop_list = ShopViewSet.as_view({
+    'get': 'list',
+    'put': 'create',
+    'delete': 'destroy'
+})
 urlpatterns = [
     path('partner/update', PartnerUpdate.as_view(), name='partner-update'),
     path('partner/state', PartnerState.as_view(), name='partner-state'),
@@ -34,7 +40,7 @@ urlpatterns = [
     path('user/password_reset', reset_password_request_token, name='password-reset'),
     path('user/password_reset/confirm', reset_password_confirm, name='password-reset-confirm'),
     path('categories', CategoryView.as_view(), name='categories'),
-    path('shops', ShopView.as_view(), name='shops'),
+    path('shops/', shop_list, name='shops'),
     path('products', ProductInfoView.as_view(), name='shops'),
     path('basket', BasketView.as_view(), name='basket'),
     path('order', OrderView.as_view(), name='order'),

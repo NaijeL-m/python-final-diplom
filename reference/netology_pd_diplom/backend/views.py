@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from django.db.models import Q, Sum, F
 from django.http import JsonResponse
 from requests import get
+from rest_framework import viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -158,7 +159,7 @@ class CategoryView(ListAPIView):
     serializer_class = CategorySerializer
 
 
-class ShopView(ListAPIView):
+class ShopViewSet(viewsets.ModelViewSet):
     """
     Класс для просмотра списка магазинов
     """
